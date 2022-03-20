@@ -40,16 +40,29 @@
                                     <constraint firstAttribute="height" constant="200" id="onb-IP-tmN"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRD-hq-BqO">
+                                <rect key="frame" x="80" y="742" width="254" height="50"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Start!"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Start!">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="30"/>
+                                    <color key="baseBackgroundColor" systemColor="systemTealColor"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                         <constraints>
                             <constraint firstItem="lwJ-Ef-2aM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="64y-sy-UBi"/>
                             <constraint firstItem="7jN-wk-n0m" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="Ldp-1x-inL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="iRD-hq-BqO" secondAttribute="bottom" constant="70" id="O1I-og-So4"/>
                             <constraint firstItem="7jN-wk-n0m" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="153" id="dih-aY-3mk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iRD-hq-BqO" secondAttribute="trailing" constant="80" id="fII-EA-Bvj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="E01-tZ-qkn" secondAttribute="trailing" constant="30" id="gJa-WF-96z"/>
                             <constraint firstItem="lwJ-Ef-2aM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="300" id="jw3-IS-hvI"/>
                             <constraint firstItem="E01-tZ-qkn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="154" id="lO9-Cz-5YJ"/>
+                            <constraint firstItem="iRD-hq-BqO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="80" id="tru-eb-BJi"/>
+                            <constraint firstItem="iRD-hq-BqO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tuG-t8-i5O"/>
                         </constraints>
                     </view>
                     <connections>
@@ -66,6 +79,9 @@
     <resources>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

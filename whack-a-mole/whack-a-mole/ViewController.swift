@@ -18,7 +18,9 @@ class ViewController: UIViewController {
         setMoleHole(moleHoleView: firstMoleView)
         setMoleHole(moleHoleView: secondMoleView)
         setMoleHole(moleHoleView: thirdMoleView)
-        // Do any additional setup after loading the view.
+        
+        standingMole(moleHoleView: firstMoleView)
+        
     }
     
     func setMoleHole(moleHoleView : UIView){
@@ -27,15 +29,15 @@ class ViewController: UIViewController {
         holeView.backgroundColor = .clear
         moleHoleView.addSubview(holeView)
         
-        let moleView = moleView()
-        moleView.frame = CGRect(x: 0, y: 0, width: moleHoleView.frame.width, height: moleHoleView.frame.height)
-        moleView.backgroundColor = .clear
-        moleHoleView.addSubview(moleView)
-        
         let improveView = improveView()
         improveView.frame = CGRect(x: 21.3, y: 180, width: moleHoleView.frame.width-42, height: moleHoleView.frame.height-180)
         improveView.backgroundColor = .clear
         moleHoleView.addSubview(improveView)
+        
+        let moleView = moleView()
+        moleView.frame = CGRect(x: 0, y: 0, width: moleHoleView.frame.width, height: moleHoleView.frame.height)
+        moleView.backgroundColor = .clear
+        moleHoleView.addSubview(moleView)
         
     }
     
@@ -48,8 +50,15 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             hammerImageView.removeFromSuperview()
         }
+        
     }
-
+    
+    func standingMole(moleHoleView : UIView){
+        let standMoleView = standMoleView()
+        standMoleView.frame = CGRect(x: 0, y: 0, width: moleHoleView.frame.width, height: moleHoleView.frame.height)
+        standMoleView.backgroundColor = .clear
+        moleHoleView.addSubview(standMoleView)
+    }
 
 }
 
@@ -74,6 +83,21 @@ class moleView : UIView {
         let path = UIBezierPath(arcCenter: CGPoint(x: self.frame.midX, y: self.frame.maxY), radius: 60, startAngle: (.pi * 188) / 180, endAngle: (.pi * 352) / 180, clockwise: true)
         UIColor.brown.setFill()
         path.fill()
+        path.lineWidth = 3
+        path.stroke()
+    }
+}
+
+class standMoleView : UIView {
+    override func draw(_ rect: CGRect) {
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 21.3, y: 190))
+        path.addLine(to: CGPoint(x: 21.3, y: 80))
+        path.addCurve(to: CGPoint(x: 139.3, y: 80), controlPoint1: CGPoint(x: 21.3, y: 0), controlPoint2: CGPoint(x: 139.3, y: 0))
+        path.addLine(to: CGPoint(x: 139.3, y: 190))
+        UIColor.brown.setFill()
+        path.fill()
+        path.lineWidth = 3
         path.stroke()
     }
 }
