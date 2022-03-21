@@ -13,13 +13,21 @@ class ViewController: UIViewController {
     @IBOutlet weak var secondMoleView : UIView!
     @IBOutlet weak var thirdMoleView : UIView!
 
+    @IBOutlet weak var startButton : UIButton!
+    
+    @IBOutlet weak var scoreLabel : UILabel!
+    @IBOutlet weak var timerLabel : UILabel!
+    
+    var score = 0
+    
+    var gameTimer : Timer?
+    var gameTimerTime = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setMoleHole(moleHoleView: firstMoleView)
         setMoleHole(moleHoleView: secondMoleView)
         setMoleHole(moleHoleView: thirdMoleView)
-        
-        standingMole(moleHoleView: firstMoleView)
         
     }
     
@@ -38,7 +46,6 @@ class ViewController: UIViewController {
         moleView.frame = CGRect(x: 0, y: 0, width: moleHoleView.frame.width, height: moleHoleView.frame.height)
         moleView.backgroundColor = .clear
         moleHoleView.addSubview(moleView)
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -50,14 +57,65 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             hammerImageView.removeFromSuperview()
         }
-        
+    }
+    
+    @objc func tapMoleHoleView(_ sender : UITapGestureRecognizer){
+        score += 1
+        scoreLabel.text = "Score : \(score)"
+    }
+    
+    func randomStandingMole(){
+        var randomTime : TimeInterval{
+            return TimeInterval.random(in: 0.6...4)
+        }
+        let timer = Timer.scheduledTimer(withTimeInterval: randomTime, repeats: false, block: { timer in
+            let randomViewNumber = Int.random(in: 1...3)
+            if randomViewNumber == 1{
+                self.standingMole(moleHoleView: self.firstMoleView)
+            }else if randomViewNumber == 2{
+                self.standingMole(moleHoleView: self.secondMoleView)
+            }else if randomViewNumber == 3{
+                self.standingMole(moleHoleView: self.thirdMoleView)
+            }
+            if self.gameTimerTime > 0 {
+                self.randomStandingMole()
+            }else{
+                
+            }
+        })
     }
     
     func standingMole(moleHoleView : UIView){
         let standMoleView = standMoleView()
         standMoleView.frame = CGRect(x: 0, y: 0, width: moleHoleView.frame.width, height: moleHoleView.frame.height)
         standMoleView.backgroundColor = .clear
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapMoleHoleView(_:)))
+        standMoleView.addGestureRecognizer(tapGesture)
         moleHoleView.addSubview(standMoleView)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            standMoleView.removeFromSuperview()
+        }
+    }
+    
+    @IBAction func touchStartButton(){
+        if gameTimer != nil && gameTimer!.isValid {
+                gameTimer!.invalidate()
+        }
+        gameTimerTime = 20
+        gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
+        randomStandingMole()
+        startButton.removeFromSuperview()
+    }
+    
+    @objc func timerCallback(){
+        if gameTimerTime != 0 {
+            timerLabel.text = "\(gameTimerTime)"
+        }else{
+            timerLabel.text = ""
+            gameTimer?.invalidate()
+            gameTimer = nil
+        }
+        gameTimerTime-=1
     }
 
 }
