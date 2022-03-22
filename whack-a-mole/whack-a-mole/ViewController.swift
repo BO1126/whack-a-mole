@@ -46,6 +46,17 @@ class ViewController: UIViewController {
         moleView.frame = CGRect(x: 0, y: 0, width: moleHoleView.frame.width, height: moleHoleView.frame.height)
         moleView.backgroundColor = .clear
         moleHoleView.addSubview(moleView)
+        
+//        let firstEyeView = leftEyeView()
+//        firstEyeView.frame = CGRect(x: 40, y: 165, width: 20, height: 20)
+//        firstEyeView.backgroundColor = .clear
+//        moleView.addSubview(firstEyeView)
+//        
+//        let secondEyeView = rightEyeView()
+//        secondEyeView.frame = CGRect(x: 90, y: 165, width: 20, height: 20)
+//        secondEyeView.backgroundColor = .clear
+//        moleView.addSubview(secondEyeView)
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -92,6 +103,32 @@ class ViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapMoleHoleView(_:)))
         standMoleView.addGestureRecognizer(tapGesture)
         moleHoleView.addSubview(standMoleView)
+        
+        let firstEyeView = leftEyeView()
+        firstEyeView.frame = CGRect(x: 40, y: 60, width: 20, height: 20)
+        firstEyeView.backgroundColor = .clear
+        standMoleView.addSubview(firstEyeView)
+        
+        let secondEyeView = rightEyeView()
+        secondEyeView.frame = CGRect(x: 90, y: 60, width: 20, height: 20)
+        secondEyeView.backgroundColor = .clear
+        standMoleView.addSubview(secondEyeView)
+        
+        let firstMouthView = mouthView()
+        firstMouthView.frame = CGRect(x: 50, y: 100, width: 30, height: 30)
+        firstMouthView.backgroundColor = .clear
+        standMoleView.addSubview(firstMouthView)
+        
+        let secondMouthView = mouthView()
+        secondMouthView.frame = CGRect(x: 70, y: 100, width: 30, height: 30)
+        secondMouthView.backgroundColor = .clear
+        standMoleView.addSubview(secondMouthView)
+        
+        let noseView = noseView()
+        noseView.frame = CGRect(x: 60, y: 80, width: 30, height: 30)
+        noseView.backgroundColor = .clear
+        standMoleView.addSubview(noseView)
+        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             standMoleView.removeFromSuperview()
         }
@@ -160,6 +197,47 @@ class standMoleView : UIView {
     }
 }
 
+class leftEyeView : UIView {
+    override func draw(_ rect: CGRect) {
+        let path = UIBezierPath(ovalIn: rect)
+        UIColor.white.setFill()
+        path.fill()
+        
+        let path2 = UIBezierPath(ovalIn: CGRect(x: 5, y: 5, width: 13, height: 13))
+        UIColor.black.setFill()
+        path2.fill()
+    }
+}
+
+class rightEyeView : UIView {
+    override func draw(_ rect: CGRect) {
+        let path = UIBezierPath(ovalIn: rect)
+        UIColor.white.setFill()
+        path.fill()
+        
+        let path2 = UIBezierPath(ovalIn: CGRect(x: 3, y: 5, width: 13, height: 13))
+        UIColor.black.setFill()
+        path2.fill()
+    }
+}
+
+class mouthView : UIView {
+    override func draw(_ rect: CGRect) {
+        let path = UIBezierPath(ovalIn: rect)
+        UIColor(red: 1, green: 243/255, blue: 196/255, alpha: 1).setFill()
+        path.fill()
+        
+    }
+}
+
+class noseView : UIView {
+    override func draw(_ rect: CGRect) {
+        let path = UIBezierPath(ovalIn: rect)
+        UIColor.black.setFill()
+        path.fill()
+        
+    }
+}
 
 
 
