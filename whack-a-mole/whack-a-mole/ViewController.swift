@@ -47,15 +47,15 @@ class ViewController: UIViewController {
         moleView.backgroundColor = .clear
         moleHoleView.addSubview(moleView)
         
-//        let firstEyeView = leftEyeView()
-//        firstEyeView.frame = CGRect(x: 40, y: 165, width: 20, height: 20)
-//        firstEyeView.backgroundColor = .clear
-//        moleView.addSubview(firstEyeView)
-//        
-//        let secondEyeView = rightEyeView()
-//        secondEyeView.frame = CGRect(x: 90, y: 165, width: 20, height: 20)
-//        secondEyeView.backgroundColor = .clear
-//        moleView.addSubview(secondEyeView)
+        let firstEyeView = leftEyeView()
+        firstEyeView.frame = CGRect(x: 40, y: 175, width: 20, height: 20)
+        firstEyeView.backgroundColor = .clear
+        moleHoleView.addSubview(firstEyeView)
+        
+        let secondEyeView = rightEyeView()
+        secondEyeView.frame = CGRect(x: 90, y: 175, width: 20, height: 20)
+        secondEyeView.backgroundColor = .clear
+        moleHoleView.addSubview(secondEyeView)
         
     }
     
@@ -102,7 +102,11 @@ class ViewController: UIViewController {
         standMoleView.backgroundColor = .clear
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapMoleHoleView(_:)))
         standMoleView.addGestureRecognizer(tapGesture)
-        moleHoleView.addSubview(standMoleView)
+        
+        let improveView = improveView()
+        improveView.frame = CGRect(x: 21.3, y: 180, width: moleHoleView.frame.width-42, height: moleHoleView.frame.height-180)
+        improveView.backgroundColor = .clear
+        standMoleView.addSubview(improveView)
         
         let firstEyeView = leftEyeView()
         firstEyeView.frame = CGRect(x: 40, y: 60, width: 20, height: 20)
@@ -128,6 +132,8 @@ class ViewController: UIViewController {
         noseView.frame = CGRect(x: 60, y: 80, width: 30, height: 30)
         noseView.backgroundColor = .clear
         standMoleView.addSubview(noseView)
+        
+        moleHoleView.addSubview(standMoleView)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             standMoleView.removeFromSuperview()
